@@ -9,11 +9,10 @@ rm -rf /tmp/*.txt
 if [ $status != 0 ];
 then exit 1
 fi
-psql -d kv1vtn -f ../sql/gtfs-shapes-veolia.sql
-psql -d kv1vtn -f ../sql/gtfs-shapes-passtimes.sql
-
-mkdir -p ../gtfs/veolia
-zip -j ../gtfs/veolia/gtfs-kv1veolia-$DATE.zip /tmp/agency.txt /tmp/calendar_dates.txt /tmp/feed_info.txt /tmp/routes.txt /tmp/stops.txt /tmp/stop_times.txt /tmp/trips.txt /tmp/shapes.txt
+psql -d kv1vtn -f ../sql/gtfs-veolia.sql
+psql -d kv1vtn -f ../sql/gtfs-passtimes.sql
+mkdir ../gtfs/veolia
+zip -j ../gtfs/veolia/gtfs-kv1veolia-$DATE.zip /tmp/agency.txt /tmp/calendar_dates.txt /tmp/feed_info.txt /tmp/routes.txt /tmp/stops.txt /tmp/stop_times.txt /tmp/trips.txt
 rm ../gtfs/veolia/gtfs-kv1veolia-latest.zip
 ln -s gtfs-kv1veolia-$DATE.zip ../gtfs/veolia/gtfs-kv1veolia-latest.zip
 

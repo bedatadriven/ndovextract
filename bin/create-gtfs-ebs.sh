@@ -2,12 +2,17 @@
 DATE=$(date +'%Y%m%d')
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 wget ../kv1feeds/ebs -N --accept=zip -q -P ../kv1feeds/ebs -nd -r http://kv1.openov.nl/ebs/ -l 1
-python manager.py -d kv1ebs -f ../kv1feeds/ebs
+python manager.py -c -d kv1ebs -f ../kv1feeds/ebs
+status=$?
+rm -rf /tmp/*.txt
+if [ $status != 0 ];
+then exit 1
+fi
 rm -rf /tmp/*.txt
 psql -d kv1ebs -f ../sql/gtfs-shapes-ebs.sql
 psql -d kv1ebs -f ../sql/gtfs-shapes-passtimes.sql
 mkdir -p ../gtfs/ebs
-zip -j ../gtfs/ebs/gtfs-kv1ebs-$DATE.zip /tmp/*.txt
+zip -j ../gtfs/ebs/gtfs-kv1ebs-$DATE.zip /tmp/agency.txt /tmp/calendar_dates.txt /tmp/feed_info.txt /tmp/routes.txt /tmp/stops.txt /tmp/stop_times.txt /tmp/trips.txt /tmp/shapes.txt
 rm ../gtfs/ebs/gtfs-kv1ebs-latest.zip
 ln -s gtfs-kv1ebs-$DATE.zip ../gtfs/ebs/gtfs-kv1ebs-latest.zip
 
