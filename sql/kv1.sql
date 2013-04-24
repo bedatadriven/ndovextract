@@ -853,3 +853,23 @@ schedulecode, scheduletypecode),
     FOREIGN KEY (dataownercode, lineplanningnumber, journeypatterncode) REFERENCES jopa_delta(dataownercode, lineplanningnumber,
 journeypatterncode)
 );
+
+CREATE TABLE timdempass (
+    "tablename"         VARCHAR(10)   NOT NULL,
+    "version"             INTEGER    NOT NULL,
+    "implicit"            CHAR(1)       NOT NULL,
+    "dataownercode"       VARCHAR(10)   NOT NULL,
+    "lineplanningnumber"  VARCHAR(10)   NOT NULL,
+    "journeypatterncode"  VARCHAR(10)   NOT NULL,
+    "timedemandgroupcode" VARCHAR(10)   NOT NULL,
+    "timinglinkorder"     DECIMAL(3)    NOT NULL,
+    "userstopcodebegin"   VARCHAR(10)   NOT NULL,
+    "userstopcodeend"     VARCHAR(10)   NOT NULL,
+    "totaldrivetime"      INTEGER       NOT NULL,
+    "stopwaittime"        DECIMAL(5)    NOT NULL,
+    PRIMARY KEY ("version","dataownercode", "lineplanningnumber", "journeypatterncode", "timedemandgroupcode", "timinglinkorder"),
+    FOREIGN KEY ("version","dataownercode", "lineplanningnumber", "journeypatterncode", "timedemandgroupcode") REFERENCES "timdemgrp" 
+("version","dataownercode", "lineplanningnumber", "journeypatterncode", "timedemandgroupcode"),
+    FOREIGN KEY ("version","dataownercode", "lineplanningnumber", "journeypatterncode", "timinglinkorder") REFERENCES "jopatili" 
+("version","dataownercode", "lineplanningnumber", "journeypatterncode", "timinglinkorder")
+);
