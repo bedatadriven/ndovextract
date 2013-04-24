@@ -8,6 +8,7 @@ psql -d kv1cxx -c "delete from schedvers"
 python timdempass.py kv1cxx
 psql -d kv1cxx -f ../sql/gtfs-shapes-connexxion.sql
 DATE=$(date +'%Y%m%d')
+mkdir -p ../gtfs/connexxion
 zip -j ../gtfs/connexxion/gtfs-kv1connexxion-$DATE.zip /tmp/*.txt
 
 rm ../gtfs/connexxion/gtfs-kv1connexxion-latest.zip

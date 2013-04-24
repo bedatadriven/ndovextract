@@ -7,6 +7,7 @@ python manager.py -c -d kv1qbuzz -f ../kv1feeds/qbuzz
 rm -rf /tmp/*.txt
 psql -d kv1qbuzz -f ../sql/gtfs-shapes-qbuzz.sql
 psql -d kv1qbuzz -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -o ../gtfs/qbuzz
 zip -j ../gtfs/qbuzz/gtfs-kv1qbuzz-$DATE.zip /tmp/*.txt
 rm ../gtfs/qbuzz/gtfs-kv1qbuzz-latest.zip
 ln -s gtfs-kv1qbuzz-$DATE.zip ../gtfs/qbuzz/gtfs-kv1qbuzz-latest.zip

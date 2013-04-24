@@ -13,6 +13,7 @@ createdb pas
 psql -d pas -c "Create extension postgis;"
 psql -d pas -f ../sql/pas.sql
 psql -d pas -f ../sql/pas-gtfs.sql
+mkdir -p ../gtfs/ret
 zip -j ../gtfs/ret/gtfs-pasret-$DATE.zip /tmp/*.txt
 rm ../gtfs/ret/gtfs-pasret-latest.zip
 ln -s gtfs-pasret-$DATE.zip ../gtfs/ret/gtfs-pasret-latest.zip

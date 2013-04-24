@@ -5,6 +5,7 @@ python manager.py -c -d kv1arr -f ../kv1feeds/arriva
 rm -rf /tmp/*.txt
 psql -d kv1arr -f ../sql/gtfs-shapes-arriva.sql
 psql -d kv1arr -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -p ../gtfs/arriva
 zip -j ../gtfs/arriva/gtfs-kv1arriva-$DATE.zip /tmp/*.txt
 rm ../gtfs/arriva/gtfs-kv1arriva-latest.zip
 ln -s gtfs-kv1arriva-$DATE.zip ../gtfs/arriva/gtfs-kv1arriva-latest.zip

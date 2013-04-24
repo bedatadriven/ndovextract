@@ -6,6 +6,7 @@ wget ../kv1feeds/veolia  --accept=zip -q -P ../kv1feeds/veolia -nd -r http://kv1
 python manager.py -d kv1vtn -f ../kv1feeds/veolia
 psql -d kv1vtn -f ../sql/gtfs-shapes-veolia.sql
 psql -d kv1vtn -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -p ../gtfs/veolia
 zip -j ../gtfs/veolia/gtfs-kv1veolia-$DATE.zip /tmp/*.txt
 rm ../gtfs/veolia/gtfs-kv1veolia-latest.zip
 ln -s gtfs-kv1veolia-$DATE.zip ../gtfs/veolia/gtfs-kv1veolia-latest.zip

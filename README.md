@@ -6,5 +6,10 @@ world : GTFS.
 
 Requirements
 ------------
-Postgis 9.1+
+Postgres 9.1+
 Postgis 2.0+ (Added as extension). It is possible and quite easy to backport the code back to postgis 1.5
+
+
+Setup
+-----
+Run ./bin/init.sh, which creates the required Postgis databases, and downloads required tools

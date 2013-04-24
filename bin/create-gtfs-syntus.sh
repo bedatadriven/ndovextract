@@ -6,6 +6,7 @@ wget ../kv1feeds/syntus -N --accept=zip -q -P ../kv1feeds/syntus -nd -r http://k
 python manager.py -c -d kv1syntus -f ../kv1feeds/syntus
 psql -d kv1syntus -f ../sql/gtfs-shapes-syntus.sql
 psql -d kv1syntus -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -p ../gtfs/syntus
 zip -j ../gtfs/syntus/gtfs-kv1syntus-$DATE.zip /tmp/*.txt
 rm ../gtfs/syntus/gtfs-kv1syntus-latest.zip
 ln -s gtfs-kv1syntus-$DATE.zip ../gtfs/syntus/gtfs-kv1syntus-latest.zip

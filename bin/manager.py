@@ -31,7 +31,7 @@ def cleandelta(conn):
     cur = conn.cursor()
     print 'Clear delta tables'
     for x in reversed(importorder):
-        cur.execute("delete from %s_delta" % (x))
+        cur.execute("delete from %s_delta" % (x))274
         conn.commit()
 
 def metadata(schedule):
@@ -271,6 +271,6 @@ def main():
         sync(conn,opts.kv1index,opts.compress);
         conn.close()
 if __name__ == '__main__':
-    main()
+     main()
 
 

@@ -6,6 +6,7 @@ python manager.py -d kv1ebs -f ../kv1feeds/ebs
 rm -rf /tmp/*.txt
 psql -d kv1ebs -f ../sql/gtfs-shapes-ebs.sql
 psql -d kv1ebs -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -p ../gtfs/ebs
 zip -j ../gtfs/ebs/gtfs-kv1ebs-$DATE.zip /tmp/*.txt
 rm ../gtfs/ebs/gtfs-kv1ebs-latest.zip
 ln -s gtfs-kv1ebs-$DATE.zip ../gtfs/ebs/gtfs-kv1ebs-latest.zip

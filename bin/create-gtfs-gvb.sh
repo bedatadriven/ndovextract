@@ -5,6 +5,7 @@ python manager.py -x -d kv1gvb -c -s http://195.193.209.12/gvbpublicatieinternet
 rm -rf /tmp/*.txt
 psql -d kv1gvb -f ../sql/gtfs-shapes-gvb.sql
 psql -d kv1gvb -f ../sql/gtfs-shapes-passtimes.sql
+mkdir -p ../gtfs/gvb
 zip -j ../gtfs/gvb/gtfs-kv1gvb-$DATE.zip /tmp/*.txt
 rm ../gtfs/gvb/gtfs-kv1gvb-latest.zip
 ln -s gtfs-kv1gvb-$DATE.zip ../gtfs/gvb/gtfs-kv1gvb-latest.zip

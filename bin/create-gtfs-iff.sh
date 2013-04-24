@@ -19,6 +19,7 @@ psql -d $DBNAME -f ../sql/iff.sql
 
 cp ../sql/stops_positioned.txt /tmp
 psql -d $DBNAME -f ../sql/iff-gtfs.sql
+mkdir ../gtfs/ns
 zip -j ../gtfs/ns/gtfs-iffns-$DATE.zip /tmp/*.txt
 rm ../gtfs/ns/gtfs-iffns-latest.zip
 ln -s gtfs-iffns-$DATE.zip ../gtfs/ns/gtfs-iffns-latest.zip
