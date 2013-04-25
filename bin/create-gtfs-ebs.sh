@@ -2,6 +2,14 @@
 DATE=$(date +'%Y%m%d')
 cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 wget ../kv1feeds/ebs -N --accept=zip -q -P ../kv1feeds/ebs -nd -r http://kv1.openov.nl/ebs/ -l 1
+
+
+# the ebs kv1 files don't seem to contain this 
+# final productformulatype column
+psql -d kv1ebs -c "ALTER TABLE jopatili DROP COLUMN productformulatype"
+psql -d kv1ebs -c "ALTER TABLE jopatili_delta DROP COLUMN productformulatype"
+
+
 python manager.py -c -d kv1ebs -f ../kv1feeds/ebs
 status=$?
 rm -rf /tmp/*.txt
@@ -9,6 +17,9 @@ if [ $status != 0 ];
 then exit 1
 fi
 rm -rf /tmp/*.txt
+
+psql -d kv1ebs -c "ALTER TABLE jopatili ADD COLUMN productformulatype DECIMAL(4)"
+
 psql -d kv1ebs -f ../sql/gtfs-shapes-ebs.sql
 psql -d kv1ebs -f ../sql/gtfs-shapes-passtimes.sql
 mkdir -p ../gtfs/ebs
