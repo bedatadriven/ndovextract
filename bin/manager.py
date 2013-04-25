@@ -274,7 +274,8 @@ def main():
         files.sort(key=lambda f: os.path.getmtime(os.path.join(opts.addfolder, f)))
         conn = psycopg2.connect("dbname='%s'" % (opts.database))
         for file in files:
-            changed = changed or importfile(conn,opts.addfolder,file,1,None,opts.delta,opts.compress)
+            file_changed = importfile(conn,opts.addfolder,file,1,None,opts.delta,opts.compress)
+            changed = changed or file_changed 
         changed = changed or purge(conn)
         conn.close()
     elif opts.kv1index:
