@@ -2,13 +2,11 @@
 DBNAME=iff
 
 DATE=$(date +'%Y%m%d')
-USERNAME=voorwaarden
-PASSWORD=geaccepteerd
 #rm /tmp/*.txt
 
-wget --user=$USERNAME --password=$PASSWORD http://data.ndovloket.nl/ns/ns-latest.zip -O /tmp/iffns.zip
+wget -N --user=$NDOV_LOCKET_USERNAME --password=$NDOV_LOCKET_PASSWORD http://data.ndovloket.nl/ns/ns-latest.zip -O /tmp/iffns.zip
 mkdir /tmp/iff/
-unzip /tmp/iffns.zip -d /tmp/iff
+unzip -o /tmp/iffns.zip -d /tmp/iff
 
 dropdb $DBNAME
 createdb $DBNAME
